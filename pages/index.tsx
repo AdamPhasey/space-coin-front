@@ -9,6 +9,7 @@ import dynamic from "next/dynamic";
 import Profile from "../components/Profile";
 const Graph = dynamic(import("../components/Graph/index"), { ssr: false });
 import { useUser } from "@auth0/nextjs-auth0";
+import Link from "next/link";
 
 function Home({
   data,
@@ -17,9 +18,9 @@ function Home({
   return (
     <>
       {!user &&
-      <a href="/api/auth/login">Login</a>}
+      <Link href="/api/auth/login">Login</Link>}
       <br />
-      <a href="/api/auth/logout">Logout</a>
+      <Link href="/api/auth/logout">Logout</Link>
       {user && 
       <Profile />}
       <h1 className="text-[5vmax] text-white flex flex-row justify-center">
