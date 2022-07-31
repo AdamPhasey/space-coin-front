@@ -9,31 +9,20 @@ import {
   CartesianGrid,
 } from "recharts";
 
-type typeA = {
-  Month: string;
-  Value: number;
-}[];
+import { Data, DataProps } from "../../pages";
 
-type info = typeA;
-
-interface propTypes {
-  info: info;
-}
-
-
-
-function Graph({ info }: propTypes) {
+function Graph( {data} : DataProps ) {
   // const result = info.map((item: { Month: propTypes; Value: propTypes; }) => {({ Month: item.Month, Value: item.Value })});
   // console.log(result);
 
-  console.log(Array.isArray(info));
+  // console.log(Array.isArray());
 
   return (
     <div className="flex-container1">
       <div className="h-full">
         <h2>Analytics</h2>
         <ResponsiveContainer maxHeight={500} minHeight={500}>
-          <AreaChart data={info}>
+          <AreaChart data={data}>
             <defs>
               <linearGradient id="color" x1="0" y1="0" x2="1" y2="1">
                 <stop offset="0%" stopColor="#2451B7" stopOpacity={0.4}></stop>
