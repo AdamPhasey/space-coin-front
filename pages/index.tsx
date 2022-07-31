@@ -6,32 +6,33 @@ import type {
 } from "next";
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
+import Profile from "../components/Profile";
 const Graph = dynamic(import("../components/Graph/index"), { ssr: false });
+import { useUser } from "@auth0/nextjs-auth0";
+
 function Home({
   data,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     const response = await fetch('https://space-coin.herokuapp.com/v1/spaceCoinDummyData')
-  //     const data = await response.json();
-  //     setData(data)
-  //   }
-  //   fetchData()
-  // }, [])
-
+}: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
+  const { user, error, isLoading } = useUser();
   return (
     <>
-      <h1 className="text-9xl text-white flex flex-row justify-center">
+      {!user &&
+      <a href="/api/auth/login">Login</a>}
+      <br />
+      <a href="/api/auth/logout">Logout</a>
+      {user && 
+      <Profile />}
+      <h1 className="text-[5vmax] text-white flex flex-row justify-center">
         SPACECOIN
       </h1>
-      <Graph data={data}/>
+      {user && <Graph data={data} />}
     </>
   );
 }
 
 export interface DataProps {
   data: Data[];
-  }
+}
 
 export interface Data {
   Month: string;
