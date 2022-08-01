@@ -10,6 +10,8 @@ import Profile from "../components/Profile";
 const Graph = dynamic(import("../components/Graph/index"), { ssr: false });
 import { useUser } from "@auth0/nextjs-auth0";
 import Link from "next/link";
+import { Button } from "@mui/material";
+import Navbar from "../components/Navbar/Navbar";
 
 function Home({
   data,
@@ -17,16 +19,27 @@ function Home({
   const { user, error, isLoading } = useUser();
   return (
     <>
-      {!user &&
-      <Link href="/api/auth/login">Login</Link>}
-      <br />
-      <Link href="/api/auth/logout">Logout</Link>
-      {user && 
-      <Profile />}
-      <h1 className="text-[5vmax] text-white flex flex-row justify-center">
-        SPACECOIN
-      </h1>
-      {user && <Graph data={data} />}
+      {!user && (
+        <div>
+          <div className="flex flex-col justify-center items-center h-screen">
+            <h1 className="text-[5vmax] text-white flex justify-center">
+              SPACECOIN
+            </h1>
+            <div className="flex flex-row">
+              <Button variant="outlined">
+                <Link href="/api/auth/login">Login</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {user && (
+        <>
+          <Navbar />
+          <Graph data={data} />
+        </>
+      )}
     </>
   );
 }

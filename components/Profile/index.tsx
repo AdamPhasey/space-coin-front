@@ -9,8 +9,8 @@ export default function Profile(): JSX.Element {
 
   return  <>{
     user && (
-      <div>
-        <Image src={user.picture ?? ''} alt={user.name ?? ''} width={100} height={100}/>
+      <div className='flex flex-col items-center text-[2vmax] md:text-[sm]'>
+        <Image src={user.picture ?? ''} alt={user.name ?? ''} width={50} height={50}/>
         <h2>{user.name}</h2>
         <p>{user.email}</p>
       </div>

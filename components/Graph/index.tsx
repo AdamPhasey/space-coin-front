@@ -13,9 +13,9 @@ function Graph( {data} : DataProps ) {
   const result = data.map((item) => ({ Month: item.Month, Value: item.Value }));
 
   return (
-      <div className="h-full">
-        <h2>Analytics</h2>
-        <ResponsiveContainer maxHeight={300} minHeight={300}>
+      <div className="h-full flex flex-col items-center p-8">
+        <h2>SC 6 MONTHS</h2>
+        <ResponsiveContainer maxHeight={500} minHeight={200}>
           <AreaChart data={data}>
             <defs>
               <linearGradient id="color" x1="0" y1="0" x2="1" y2="1">
