@@ -11,8 +11,6 @@ export default function Profile(): JSX.Element {
     user && (
       <div className='flex flex-col items-center text-[2vmax] md:text-[sm]'>
         <Image src={user.picture ?? ''} alt={user.name ?? ''} width={50} height={50}/>
-        <h2>{user.name}</h2>
-        <p>{user.email}</p>
       </div>
     )
     }</>

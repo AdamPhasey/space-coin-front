@@ -4,6 +4,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 import Link from 'next/link';
+import Profile from '../Profile';
 
 export default function MenuPopupState() {
   return (
@@ -14,7 +15,7 @@ export default function MenuPopupState() {
             Dashboard
           </Button>
           <Menu {...bindMenu(popupState)}>
-            <MenuItem onClick={popupState.close}>Profile</MenuItem>
+            <MenuItem onClick={popupState.close}><Profile/></MenuItem>
             <MenuItem onClick={popupState.close}>My account</MenuItem>
             <MenuItem onClick={popupState.close}><Link href="api/auth/logout">Logout</Link></MenuItem>
           </Menu>
