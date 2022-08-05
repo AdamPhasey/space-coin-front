@@ -31,7 +31,7 @@ function Home({
       direction: "alternate",
       loop: false,
     });
-  });
+  }, []);
 
   return (
     <>
