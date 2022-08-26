@@ -40,6 +40,9 @@ export default function Dashboard(): JSX.Element {
     <>
       <Navbar />
       <br/>
+      <div>
+        
+      </div>
       <div className="flex text-white text-[3vmax] md:text-[2vmax] justify-center">
         {user &&
         <h1>Welcome {user.name}</h1>
