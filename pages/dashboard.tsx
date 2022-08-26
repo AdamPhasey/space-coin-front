@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 const Graph = dynamic(import("../components/Graph/index"), { ssr: false });
 
 export interface DataProps {
-  data: Data[];
+  data: Data[]
 }
 
 export interface Data {
@@ -15,7 +15,7 @@ export interface Data {
 
 export default function Dashboard(): JSX.Element {
 
-    const [data, setData] = useState([{Month: 'June', Value: 2}])
+    const [data, setData] = useState([{Month: 'Jan', Value: 33}, {Month: 'Feb', Value: 99}])
  useEffect(() => {
     async function fetchData() {
     const res = await fetch('https://space-coin.herokuapp.com/v1/spaceCoinDummyData')
