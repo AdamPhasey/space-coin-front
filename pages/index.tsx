@@ -8,16 +8,12 @@ import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import Profile from "../components/Profile";
 const Graph = dynamic(import("../components/Graph/index"), { ssr: false });
-import { useUser } from "@auth0/nextjs-auth0";
 import Link from "next/link";
 import { Button } from "@mui/material";
 import Navbar from "../components/Navbar/Navbar";
 import anime from "animejs";
 
-function Home({
-  data,
-}: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
-  const { user, error, isLoading } = useUser();
+function Home():JSX.Element {
 
   useEffect(() => {
     anime({
@@ -35,8 +31,6 @@ function Home({
 
   return (
     <>
-      {!user && (
-        <div>
           <div className="flex flex-col justify-center items-center h-screen">
             <svg
               width={"50vmax"}
@@ -103,38 +97,16 @@ function Home({
             <Button variant="outlined">
               <Link href="/api/auth/login">Login</Link>
             </Button>
+            <br/>
+            <Button variant="outlined">
+              <Link href="/dashboard">Continue As Guest</Link>
+            </Button>
           </div>
-        </div>
-      )}
 
-      {user && (
-        <>
-          <Navbar />
-          <Graph data={data} />
-        </>
-      )}
     </>
   );
 }
 
-export interface DataProps {
-  data: Data[];
-}
 
-export interface Data {
-  Month: string;
-  Value: number;
-}
-
-export const getServerSideProps: GetServerSideProps<DataProps> = async () => {
-  // ...  // Fetch data from external API
-  const res = await fetch(
-    `https://space-coin.herokuapp.com/v1/spaceCoinDummyData`
-  );
-  const data: Data[] = await res.json();
-
-  // Pass data to the page via props
-  return { props: { data } };
-};
 
 export default Home;
