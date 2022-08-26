@@ -7,17 +7,10 @@ import {
   Tooltip,
   CartesianGrid,
 } from "recharts";
+import { DataProps } from "../../pages/dashboard";
 
 
 
-export interface DataProps {
-  data: Data[];
-}
-
-export interface Data {
-  Month: string;
-  Value: number;
-}
 function Graph( {data} : DataProps ) {
   const result = data.map((item) => ({ Month: item.Month, Value: item.Value }));
 
